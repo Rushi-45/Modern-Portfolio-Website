@@ -60,6 +60,7 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
           <TypewriterText
             text={[
               "Frontend Developer",
+              "Vibe Code Cleanup Specialist",
               "React Enthusiast",
               "TypeScript Advocate",
               "Performance Optimizer",
