@@ -9,6 +9,7 @@ import useMouse from "@react-hook/mouse-position";
 import { motion } from "framer-motion";
 import SpotlightCard from "./components/common/SpotlightCard";
 import LoadingFallback from "./components/common/LoadingFallback";
+import FixedBuyMeButton from "./components/common/FixedBuyMeButton";
 
 const About = lazy(() => import("./components/pages/About"));
 const Projects = lazy(() => import("./components/pages/Projects"));
@@ -140,6 +141,7 @@ const App = () => {
           <Footer />
         </div>
       </SpotlightCard>
+      <FixedBuyMeButton />
     </Router>
   );
 };

@@ -8,6 +8,7 @@ import useMouse from "@react-hook/mouse-position";
 import { motion } from "framer-motion";
 import SpotlightCard from "@/components/common/SpotlightCard";
 import LoadingFallback from "@/components/common/LoadingFallback";
+import FixedBuyMeButton from "@/components/common/FixedBuyMeButton";
 
 const About = lazy(() => import("@/components/pages/About"));
 const Projects = lazy(() => import("@/components/pages/Projects"));
@@ -93,6 +94,7 @@ export default function PortfolioPage() {
   }
 
   return (
+  <>
     <SpotlightCard
       className="custom-spotlight-card"
       spotlightColor="rgba(0, 229, 255, 0.2)"
@@ -135,5 +137,7 @@ export default function PortfolioPage() {
         <Footer />
       </div>
     </SpotlightCard>
+    <FixedBuyMeButton />
+  </>
   );
 }

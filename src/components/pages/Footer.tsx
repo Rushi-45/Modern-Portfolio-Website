@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
-import { FiMail, FiLinkedin, FiInstagram, FiGithub } from "react-icons/fi";
+import { FiMail, FiLinkedin, FiInstagram, FiGithub, FiCoffee } from "react-icons/fi";
 import { Link } from "react-scroll";
+import { BuyMeSupportModal, useBuyMeSupport } from "../common/BuyMeSupport";
+
+const CHAI_URL = 'https://buymeachai.ezee.li/rushi45';
+const COFFEE_URL = 'https://buymeacoffee.com/rushi45';
 
 const Footer = () => {
+  const { isOpen, open, close } = useBuyMeSupport();
+
   return (
-    <footer className="w-full bg-gray-900 text-white py-8 px-6">
+    <>
+      <footer className="w-full bg-gray-900 text-white py-8 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -74,9 +81,23 @@ const Footer = () => {
           >
             <FiGithub className="text-xl text-gray-400 hover:text-gray-300 transition duration-300" />
           </a>
+          <button
+            onClick={open}
+            aria-label="Buy me a coffee or chai"
+            className="text-xl text-gray-400 hover:text-yellow-400 transition duration-300"
+          >
+            <FiCoffee />
+          </button>
         </motion.div>
       </div>
-    </footer>
+      </footer>
+      <BuyMeSupportModal
+        open={isOpen}
+        onClose={close}
+        chaiUrl={CHAI_URL}
+        coffeeUrl={COFFEE_URL}
+      />
+    </>
   );
 };
 
