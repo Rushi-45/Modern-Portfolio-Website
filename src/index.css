@@ -38,11 +38,10 @@
 }
 
 @utility bg-custom {
-    background-color: #121212;
+  background-color: #121212;
   background-image: url("./assets/images/bg-pattern.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  min-height: 5000px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   content-visibility: auto;
 }
