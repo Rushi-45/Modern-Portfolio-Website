@@ -1,8 +1,8 @@
 import { motion, useInView } from "framer-motion";
-import { FiMail, FiLinkedin, FiInstagram, FiGithub } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
 import HoverDevCards from "@/components/common/HoverFillCards";
+import { socialLinks } from "@/constants/social";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
 
   const ref1 = useRef(null);
@@ -17,14 +18,32 @@ const Contact = () => {
   const isInView1 = useInView(ref1, { once: true, amount: 0.2 });
   const isInView2 = useInView(ref2, { once: true, amount: 0.2 });
 
+  const validateForm = () => {
+    const newErrors = { name: "", email: "", message: "" };
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(Boolean);
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (errors[name as keyof typeof errors]) {
+      setErrors({ ...errors, [name]: "" });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setLoading(true);
 
     try {
@@ -40,10 +59,11 @@ const Contact = () => {
       if (response.ok) {
         toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
+        setErrors({ name: "", email: "", message: "" });
       } else {
         toast.error("Failed to send message.");
       }
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong!");
     } finally {
       setLoading(false);
@@ -88,51 +108,95 @@ const Contact = () => {
             <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-center">
               Send Me a Message 📩
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="👤 Hey there! What's your name?"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-5 py-3 rounded-lg border border-gray-500 bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                />
-              </motion.div>
+            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <div>
+                <label htmlFor="contact-name" className="sr-only">
+                  Your name
+                </label>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    placeholder="👤 Hey there! What's your name?"
+                    value={formData.name}
+                    onChange={handleChange}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    className={`w-full px-5 py-3 rounded-lg border bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300 ${
+                      errors.name ? "border-red-500" : "border-gray-500"
+                    }`}
+                  />
+                </motion.div>
+                {errors.name && (
+                  <p id="name-error" className="mt-1 text-sm text-red-400">
+                    {errors.name}
+                  </p>
+                )}
+              </div>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="📧 Drop your best email here!"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-5 py-3 rounded-lg border border-gray-500 bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                />
-              </motion.div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">
+                  Your email address
+                </label>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    placeholder="📧 Drop your best email here!"
+                    value={formData.email}
+                    onChange={handleChange}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                    className={`w-full px-5 py-3 rounded-lg border bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300 ${
+                      errors.email ? "border-red-500" : "border-gray-500"
+                    }`}
+                  />
+                </motion.div>
+                {errors.email && (
+                  <p id="email-error" className="mt-1 text-sm text-red-400">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <textarea
-                  name="message"
-                  placeholder="💬 Tell me about your project..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="w-full px-5 py-3 rounded-lg border border-gray-500 bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                />
-              </motion.div>
+              <div>
+                <label htmlFor="contact-message" className="sr-only">
+                  Your message
+                </label>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="💬 Tell me about your project..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={
+                      errors.message ? "message-error" : undefined
+                    }
+                    className={`w-full px-5 py-3 rounded-lg border bg-transparent text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 transition-all duration-300 ${
+                      errors.message ? "border-red-500" : "border-gray-500"
+                    }`}
+                  />
+                </motion.div>
+                {errors.message && (
+                  <p id="message-error" className="mt-1 text-sm text-red-400">
+                    {errors.message}
+                  </p>
+                )}
+              </div>
 
               <motion.button
                 type="submit"
@@ -146,7 +210,7 @@ const Contact = () => {
                 }
                 whileTap={!loading ? { scale: 0.95 } : {}}
                 disabled={loading}
-                className={`w-full bg-linear-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-lg ${
+                className={`w-full bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-lg ${
                   loading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -157,6 +221,7 @@ const Contact = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <circle
                         className="opacity-25"
@@ -165,12 +230,12 @@ const Contact = () => {
                         r="10"
                         stroke="currentColor"
                         strokeWidth="4"
-                      ></circle>
+                      />
                       <path
                         className="opacity-75"
                         fill="currentColor"
                         d="M4 12a8 8 0 018-8v8H4z"
-                      ></path>
+                      />
                     </svg>
                     Sending...
                   </div>
@@ -182,6 +247,7 @@ const Contact = () => {
           </div>
         </motion.div>
       </motion.div>
+
       <motion.div
         ref={ref2}
         initial={{ opacity: 0, y: 50 }}
@@ -191,42 +257,18 @@ const Contact = () => {
       >
         <div className="p-4">
           <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-            <HoverDevCards
-              title="Email"
-              subtitle="Get in touch"
-              href="mailto:rushi.positive@gmail.com"
-              Icon={FiMail}
-              color="red"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-            <HoverDevCards
-              title="LinkedIn"
-              subtitle="Professional Profile"
-              href="https://www.linkedin.com/in/rushi-chudasama-63473819a/"
-              Icon={FiLinkedin}
-              color="blue"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-            <HoverDevCards
-              title="Instagram"
-              subtitle="Follow me"
-              href="https://www.instagram.com/rushiii.js"
-              Icon={FiInstagram}
-              color="pink"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-            <HoverDevCards
-              title="GitHub"
-              subtitle="Open Source Contributions"
-              href="https://github.com/Rushi-45/"
-              Icon={FiGithub}
-              color="gray"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
+            {socialLinks.map(({ title, subtitle, href, icon: Icon, color }) => (
+              <HoverDevCards
+                key={href}
+                title={title}
+                subtitle={subtitle}
+                href={href}
+                Icon={Icon}
+                color={color}
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            ))}
           </div>
         </div>
       </motion.div>

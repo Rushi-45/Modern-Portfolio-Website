@@ -77,6 +77,9 @@ const Header = () => {
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
         transition={{ duration: 0.3 }}
+        aria-label="Toggle mobile navigation"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-nav"
       >
         <motion.div
           animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
@@ -89,6 +92,8 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.nav
+            id="mobile-nav"
+            aria-label="Main navigation"
             initial="closed"
             animate="open"
             exit="exit"
@@ -158,7 +163,7 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      <nav className="hidden md:flex relative items-center space-x-2 rounded-full border border-white/10 bg-white/10 px-6 py-2 backdrop-blur-md shadow-lg">
+      <nav aria-label="Main navigation" className="hidden md:flex relative items-center space-x-2 rounded-full border border-white/10 bg-white/10 px-6 py-2 backdrop-blur-md shadow-lg">
         {sections.map((section) => (
           <motion.div
             key={section}

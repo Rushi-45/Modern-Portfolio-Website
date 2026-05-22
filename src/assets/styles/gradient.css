@@ -1,7 +1,9 @@
 .download-resume {
   position: relative;
   z-index: 2;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px 20px;
   background-color: #3b82f6;
   color: white;
@@ -9,11 +11,8 @@
   border-radius: 8px;
   transition: background-color 2s ease, color 2s ease;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 47px;
-  width: 380px;
+  width: min(380px, 100%);
   font-weight: 700;
 }
 
@@ -108,78 +107,4 @@
 .green {
   background-color: #34d399;
   border-radius: 8px;
-}
-
-/* Add these styles for the parallax effect */
-.w-full {
-  width: 100%;
-}
-
-.h-screen {
-  height: 100vh;
-}
-
-.overflow-hidden {
-  overflow: hidden;
-}
-
-.relative {
-  position: relative;
-}
-
-.grid {
-  display: grid;
-}
-
-.place-items-center {
-  place-items: center;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.text-7xl {
-  font-size: 4.5rem;
-}
-
-@media (min-width: 768px) {
-  [class*="md:text-9xl"] {
-    font-size: 6rem;
-  }
-}
-
-.relative {
-  position: relative;
-}
-
-.z-10 {
-  z-index: 10;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.inset-0 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.z-0 {
-  z-index: 0;
-}
-
-.z-20 {
-  z-index: 20;
-}
-
-.bg-gray-100 {
-  background-color: #f7fafc;
-}
-
-.text-gray-800 {
-  color: #2d3748;
 }

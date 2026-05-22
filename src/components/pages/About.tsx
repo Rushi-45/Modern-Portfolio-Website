@@ -36,10 +36,10 @@ const About: React.FC<AboutProps> = ({ contactEnter, contactLeave }) => {
 
   useEffect(() => {
     if (isInView) {
-      const animation1 = animate(experience, 3, { duration: 2.5 });
-      const animation2 = animate(hours, 5000, { duration: 2.5 });
-      const animation3 = animate(projects, 15, { duration: 2.5 });
-      const animation4 = animate(clients, 10, { duration: 2.5 });
+      const animation1 = animate(experience, 4, { duration: 2.5 });
+      const animation2 = animate(hours, 7500, { duration: 2.5 });
+      const animation3 = animate(projects, 30, { duration: 2.5 });
+      const animation4 = animate(clients, 15, { duration: 2.5 });
 
       return () => {
         animation1.stop();
@@ -48,7 +48,9 @@ const About: React.FC<AboutProps> = ({ contactEnter, contactLeave }) => {
         animation4.stop();
       };
     }
-  }, [isInView]);
+  // experience/hours/projects/clients are stable MotionValue refs — listing them
+  // satisfies the exhaustive-deps rule without changing behaviour.
+  }, [isInView, experience, hours, projects, clients]);
 
   return (
     <motion.section
@@ -86,15 +88,40 @@ const About: React.FC<AboutProps> = ({ contactEnter, contactLeave }) => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="mt-4 text-[#808080] leading-relaxed"
           >
-            I create dynamic and interactive websites with a focus on{" "}
-            <span className="text-white font-semibold">performance</span> and{" "}
-            <span className="text-white font-semibold">modern UI/UX</span>. I
-            work extensively with{" "}
-            <span className="text-white font-semibold">
-              React, TypeScript, Tailwind CSS, and Framer Motion
+            I build fast, interactive web experiences with{" "}
+            <span
+              className="font-semibold text-transparent bg-clip-text animate-shine"
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #ffffff 0%, #60a5fa 25%, #4fd1c5 50%, #60a5fa 75%, #ffffff 100%)",
+                backgroundSize: "200% 100%",
+              }}
+            >
+              Next.js, React, TypeScript, Tailwind, and Framer Motion
             </span>
-            . My goal is to build smooth, high-quality experiences that users
-            love.
+            . As an{" "}
+            <span
+              className="font-semibold text-transparent bg-clip-text animate-shine"
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #ffffff 0%, #a78bfa 25%, #f472b6 50%, #a78bfa 75%, #ffffff 100%)",
+                backgroundSize: "200% 100%",
+              }}
+            >
+              AI-native developer
+            </span>
+            , I ship daily with{" "}
+            <span
+              className="font-semibold text-transparent bg-clip-text animate-shine"
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #ffffff 0%, #34d399 25%, #f59e0b 50%, #f472b6 75%, #ffffff 100%)",
+                backgroundSize: "200% 100%",
+              }}
+            >
+              Cursor, Claude Code, ChatGPT, Gemini, and Copilot
+            </span>
+            {" "}— orchestrating agents to move faster without losing quality.
           </motion.p>
 
           <motion.div

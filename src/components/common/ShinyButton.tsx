@@ -1,18 +1,13 @@
 import { motion } from "framer-motion";
 import "@/assets/styles/ShinyButton.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ShinyButtonProps {
   title: string;
 }
 
 const ShinyButton: React.FC<ShinyButtonProps> = ({ title }) => {
-  const [playShine, setPlayShine] = useState(true);
-
-  useEffect(() => {
-    setPlayShine(false);
-    setTimeout(() => setPlayShine(true), 50);
-  }, []);
+  const [playShine, setPlayShine] = useState(false);
 
   return (
     <motion.button

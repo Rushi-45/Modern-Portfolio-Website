@@ -19,7 +19,6 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
   const [hovered, setHovered] = useState(false);
-
   const containerRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -57,18 +56,29 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
         </motion.div>
 
         <h1 className="mt-4">
-          <TypewriterText
-            text={[
-              "Frontend Developer",
-              "Vibe Code Cleanup Specialist",
-              "React Enthusiast",
-              "TypeScript Advocate",
-              "Performance Optimizer",
-              "CSS Wizard",
-            ]}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center"
-          />
+          <span className="sr-only">
+            Rushi Chudasama — Frontend Developer & React.js Engineer
+            specializing in Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+            AI-native developer based in Ahmedabad, India.
+          </span>
+          <span aria-hidden="true">
+            <TypewriterText
+              text={[
+                "Frontend Developer",
+                "React.js Engineer",
+                "Next.js Developer",
+                "TypeScript Advocate",
+                "AI-Native Developer",
+                "Performance Optimizer",
+              ]}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center"
+            />
+          </span>
         </h1>
+        <p className="sr-only">
+          Building production React.js, Next.js & TypeScript apps in Ahmedabad,
+          India — available for freelance and full-time roles.
+        </p>
 
         <div className="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] 3xl:w-[600px] 3xl:h-[600px]">
           <MotionImage
@@ -108,12 +118,9 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
             href="https://drive.google.com/uc?export=download&id=1iY7JNyRN9LYdmga4OZnurTK5yfXTGeqw"
             target="_blank"
             rel="noopener noreferrer"
-            className={`download-resume bg-primary ${
-              hovered ? "text-white" : "text-secondary"
-            } flex items-center justify-center px-6 py-3 rounded-lg font-medium `}
+            className="download-resume bg-primary text-white flex items-center justify-center px-6 py-3 rounded-lg font-medium"
             style={{
               backgroundColor: hovered ? "transparent" : "#3B82F6",
-              color: hovered ? "white" : "white",
               willChange: "transform, opacity",
             }}
             initial={{ opacity: 0, scale: 0.9 }}

@@ -7,7 +7,7 @@ import Matter, {
   Mouse,
   MouseConstraint,
 } from "matter-js";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SKILL_SIZE = 64;
 
@@ -117,8 +117,9 @@ const DraggableSkills = () => {
       World.clear(engine.world, false);
       Engine.clear(engine);
     };
+    // containerRef is a stable ref — only re-run when physicsActive toggles
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef.current, physicsActive]);
+  }, [physicsActive]);
 
   useEffect(() => {
     if (isReady) {
@@ -165,7 +166,6 @@ const DraggableSkills = () => {
       ref={sectionRef}
       className="flex flex-col items-center space-y-4 px-4 py-8"
     >
-      <Toaster />
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
         Tech Stack
       </h2>
@@ -186,6 +186,10 @@ const DraggableSkills = () => {
           skills.map((skill, i) => (
             <div
               key={skill.id}
+              role="button"
+              tabIndex={0}
+              aria-label={skill.name}
+              title={skill.name}
               className={`absolute w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center ${skill.bgColor} rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none group`}
               style={{
                 left: `${positions[i].x - SKILL_SIZE / 2}px`,
@@ -193,13 +197,10 @@ const DraggableSkills = () => {
                 transition: "box-shadow 0.2s",
                 zIndex: 2,
               }}
-              tabIndex={0}
-              aria-label={skill.name}
-              title={skill.name}
             >
               {skill.icon &&
                 React.cloneElement(skill.icon, {
-                  size: window.innerWidth < 400 ? 30 : 40,
+                  size: containerSize.width < 400 ? 30 : 40,
                   className: `sm:text-2xl ${skill.textColor}`,
                 })}
               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded bg-black text-white text-xs opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition pointer-events-none z-10 whitespace-nowrap">

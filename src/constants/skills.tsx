@@ -16,8 +16,29 @@ import {
   SiVercel,
   SiShadcnui,
   SiVite,
+  SiClaude,
+  SiOpenai,
+  SiGooglegemini,
+  SiGithubcopilot,
+  SiPerplexity,
 } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
+
+interface CursorIconProps {
+  size?: number | string;
+  className?: string;
+}
+
+const CursorIcon: React.FC<CursorIconProps> = ({ size = 40, className }) => (
+  <img
+    src="/cursor.jpg"
+    alt="Cursor"
+    width={size}
+    height={size}
+    className={`rounded-full object-cover ${className ?? ""}`}
+    draggable={false}
+  />
+);
 
 export const skills = [
   {
@@ -130,6 +151,48 @@ export const skills = [
     name: "Vite",
     icon: <SiVite />,
     bgColor: "bg-purple-400",
+    textColor: "text-white",
+  },
+  {
+    id: 17,
+    name: "Cursor",
+    icon: <CursorIcon />,
+    bgColor: "bg-zinc-900",
+    textColor: "text-white",
+  },
+  {
+    id: 18,
+    name: "Claude",
+    icon: <SiClaude />,
+    bgColor: "bg-orange-600",
+    textColor: "text-white",
+  },
+  {
+    id: 19,
+    name: "ChatGPT",
+    icon: <SiOpenai />,
+    bgColor: "bg-teal-700",
+    textColor: "text-white",
+  },
+  {
+    id: 20,
+    name: "Gemini",
+    icon: <SiGooglegemini />,
+    bgColor: "bg-blue-600",
+    textColor: "text-white",
+  },
+  {
+    id: 21,
+    name: "GitHub Copilot",
+    icon: <SiGithubcopilot />,
+    bgColor: "bg-gray-800",
+    textColor: "text-white",
+  },
+  {
+    id: 22,
+    name: "Perplexity",
+    icon: <SiPerplexity />,
+    bgColor: "bg-cyan-700",
     textColor: "text-white",
   },
 ];

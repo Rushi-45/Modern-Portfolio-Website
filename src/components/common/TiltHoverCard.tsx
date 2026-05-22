@@ -24,7 +24,7 @@ export const TiltHoverCard = () => {
 
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
-  const handleMouseMove = (e: any) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return [0, 0];
 
     const rect = ref.current.getBoundingClientRect();

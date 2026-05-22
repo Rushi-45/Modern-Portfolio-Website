@@ -2,54 +2,71 @@ import type { Metadata } from "next";
 import "@/index.css";
 import "@/App.css";
 
+const SITE_URL = "https://rushichudasama.netlify.app";
+const TITLE =
+  "Frontend Developer Portfolio | Rushi Chudasama — React.js, Next.js & TypeScript Engineer";
+const DESCRIPTION =
+  "Hire Rushi Chudasama — Frontend Developer with 4+ years building production React.js, Next.js, and TypeScript apps. AI-native engineer based in Ahmedabad, India, available for freelance and full-time roles. Specializing in Framer Motion, Tailwind CSS, and modern web performance.";
+
 export const metadata: Metadata = {
-  title: "Rushi Chudasama | React Developer Portfolio",
-  description:
-    "I'm Rushi Chudasama, a React.js developer passionate about building user-friendly web applications. Check out my portfolio and projects!",
-  keywords: [
-    "Rushi Chudasama",
-    "React Developer",
-    "Frontend Developer",
-    "JavaScript",
-    "TypeScript",
-    "Portfolio",
-    "Ahmedabad Developer",
-    "Web Developer",
-    "React.js",
-    "Framer Motion",
-    "Tailwind CSS",
-  ],
-  authors: [{ name: "Rushi Chudasama" }],
-  robots: "index, follow",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s | Rushi Chudasama",
+  },
+  description: DESCRIPTION,
+  applicationName: "Rushi Chudasama Portfolio",
+  authors: [{ name: "Rushi Chudasama", url: SITE_URL }],
+  creator: "Rushi Chudasama",
+  publisher: "Rushi Chudasama",
+  category: "technology",
+  alternates: {
+    canonical: SITE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Rushi Chudasama | React Developer Portfolio",
-    description:
-      "Explore my projects and experience as a frontend developer specializing in React.js, TypeScript, and Tailwind CSS. Building modern, performant web applications.",
-    url: "https://rushichudasama.netlify.app/",
-    siteName: "Rushi Chudasama Portfolio",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Rushi Chudasama — Frontend Developer Portfolio",
     images: [
       {
-        url: "https://rushichudasama.netlify.app/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "Rushi Chudasama — Frontend Developer specializing in React.js, Next.js, and TypeScript",
       },
     ],
     locale: "en_US",
-    type: "website",
+    type: "profile",
+    firstName: "Rushi",
+    lastName: "Chudasama",
+    username: "rushi-45",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rushi Chudasama | React Developer Portfolio",
-    description:
-      "Frontend Developer specializing in React.js, TypeScript, and modern web technologies. Check out my projects and experience!",
-    images: ["https://rushichudasama.netlify.app/twitter-image.jpg"],
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/twitter-image.jpg"],
     creator: "@rushi_dev",
   },
   icons: {
     icon: "/favicon.png",
+    apple: "/favicon.png",
   },
-  other: {
-    "revisit-after": "7 days",
+  verification: {
+    // Add your Google Search Console verification token here after registering:
+    // google: "abc123-verification-token-here",
   },
 };
 
@@ -79,18 +96,66 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
+              "@id": `${SITE_URL}/#person`,
               name: "Rushi Chudasama",
-              url: "https://rushichudasama.netlify.app/",
-              sameAs: [
-                "https://www.linkedin.com/in/rushi-chudasama/",
-                "https://github.com/rushi-chudasama",
-                "https://twitter.com/rushi_dev",
-              ],
+              alternateName: ["Rushi", "Rushi Patel"],
+              url: SITE_URL,
+              image: `${SITE_URL}/og-image.jpg`,
               jobTitle: "Frontend Developer",
+              description:
+                "Frontend Developer with 4+ years of experience building React.js, Next.js, and TypeScript applications. AI-native engineer based in Ahmedabad, India.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Ahmedabad",
+                addressRegion: "Gujarat",
+                addressCountry: "IN",
+              },
+              email: "mailto:rushi.positive@gmail.com",
+              knowsAbout: [
+                "React.js",
+                "Next.js",
+                "TypeScript",
+                "JavaScript",
+                "Tailwind CSS",
+                "Framer Motion",
+                "Redux",
+                "Node.js",
+                "HTML5",
+                "CSS3",
+                "Frontend Development",
+                "Web Performance",
+                "Responsive Design",
+                "Accessibility",
+                "AI-Augmented Development",
+                "Cursor IDE",
+                "Claude Code",
+                "GitHub Copilot",
+              ],
+              sameAs: [
+                "https://www.linkedin.com/in/rushi-chudasama-63473819a/",
+                "https://github.com/Rushi-45/",
+                "https://www.instagram.com/rushiii.js",
+              ],
               worksFor: {
                 "@type": "Organization",
                 name: "Bacancy Technologies",
+                url: "https://www.bacancytechnology.com/",
               },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: SITE_URL,
+              name: "Rushi Chudasama — Frontend Developer Portfolio",
+              description: DESCRIPTION,
+              inLanguage: "en-US",
+              publisher: { "@id": `${SITE_URL}/#person` },
             }),
           }}
         />

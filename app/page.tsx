@@ -5,7 +5,8 @@ import Header from "@/components/common/Header";
 import Home from "@/components/pages/Home";
 import { useRef, useState } from "react";
 import useMouse from "@react-hook/mouse-position";
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 import SpotlightCard from "@/components/common/SpotlightCard";
 import LoadingFallback from "@/components/common/LoadingFallback";
 import FixedBuyMeButton from "@/components/common/FixedBuyMeButton";
@@ -94,7 +95,13 @@ export default function PortfolioPage() {
   }
 
   return (
-  <>
+  <MotionConfig reducedMotion="user">
+    <a
+      href="#home"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[2000] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
     <SpotlightCard
       className="custom-spotlight-card"
       spotlightColor="rgba(0, 229, 255, 0.2)"
@@ -138,6 +145,7 @@ export default function PortfolioPage() {
       </div>
     </SpotlightCard>
     <FixedBuyMeButton />
-  </>
+    <Toaster />
+  </MotionConfig>
   );
 }
