@@ -29,3 +29,6 @@ out
 
 # Local Netlify folder
 .netlify
+
+# Claude Code session metadata
+.claude
