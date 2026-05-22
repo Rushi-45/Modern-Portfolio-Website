@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
 import { FiMenu, FiX } from "react-icons/fi";
 import { sections, sidebarVariants } from "@/constants/headers";
+import { siteConfig } from "@/constants/site";
 
 const itemVariants = {
   hidden: { opacity: 0, x: -20 },
@@ -18,7 +19,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleBookCall = () => {
-    window.open("https://calendly.com/rushi-positive", "_blank");
+    window.open(siteConfig.calendly, "_blank");
   };
 
   useEffect(() => {

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "@/index.css";
 import "@/App.css";
+import { siteConfig } from "@/constants/site";
 
-const SITE_URL = "https://rushichudasama.netlify.app";
+const SITE_URL = siteConfig.url;
 const TITLE =
   "Frontend Developer Portfolio | Rushi Chudasama — React.js, Next.js & TypeScript Engineer";
 const DESCRIPTION =
@@ -39,14 +40,6 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: SITE_URL,
     siteName: "Rushi Chudasama — Frontend Developer Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Rushi Chudasama — Frontend Developer specializing in React.js, Next.js, and TypeScript",
-      },
-    ],
     locale: "en_US",
     type: "profile",
     firstName: "Rushi",
@@ -57,12 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/twitter-image.jpg"],
-    creator: "@rushi_dev",
-  },
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    creator: siteConfig.twitterHandle,
   },
   verification: {
     // Add your Google Search Console verification token here after registering:
@@ -78,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://rushichudasama.netlify.app" />
+        <link rel="preconnect" href={SITE_URL} />
         <link rel="dns-prefetch" href="https://api.github.com" />
         <link rel="dns-prefetch" href="https://formsubmit.co" />
         <link
@@ -89,7 +77,7 @@ export default function RootLayout({
           imageSrcSet="/spinner-320w.webp 320w, /spinner-480w.webp 480w, /spinner-560w.webp 560w, /spinner-600w.webp 600w"
           imageSizes="(max-width: 575px) 320px, (max-width: 768px) 480px, (max-width: 992px) 560px, 600px"
         />
-        <link rel="canonical" href="https://rushichudasama.netlify.app/" />
+        <link rel="canonical" href={`${SITE_URL}/`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -97,20 +85,20 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "@id": `${SITE_URL}/#person`,
-              name: "Rushi Chudasama",
+              name: siteConfig.name,
               alternateName: ["Rushi", "Rushi Patel"],
               url: SITE_URL,
-              image: `${SITE_URL}/og-image.jpg`,
-              jobTitle: "Frontend Developer",
+              image: `${SITE_URL}/opengraph-image.png`,
+              jobTitle: siteConfig.jobTitle,
               description:
                 "Frontend Developer with 4+ years of experience building React.js, Next.js, and TypeScript applications. AI-native engineer based in Ahmedabad, India.",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Ahmedabad",
-                addressRegion: "Gujarat",
-                addressCountry: "IN",
+                addressLocality: siteConfig.location.city,
+                addressRegion: siteConfig.location.region,
+                addressCountry: siteConfig.location.country,
               },
-              email: "mailto:rushi.positive@gmail.com",
+              email: `mailto:${siteConfig.email}`,
               knowsAbout: [
                 "React.js",
                 "Next.js",
@@ -132,9 +120,9 @@ export default function RootLayout({
                 "GitHub Copilot",
               ],
               sameAs: [
-                "https://www.linkedin.com/in/rushi-chudasama-63473819a/",
-                "https://github.com/Rushi-45/",
-                "https://www.instagram.com/rushiii.js",
+                siteConfig.social.linkedin,
+                siteConfig.social.github,
+                siteConfig.social.instagram,
               ],
               worksFor: {
                 "@type": "Organization",

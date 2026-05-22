@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import "@/assets/styles/gradient.css";
 import TypewriterText from "@/components/common/TypewriterText";
+import { siteConfig } from "@/constants/site";
 
 const MotionImage = motion(Image);
 
@@ -115,7 +116,7 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
           <div className="colorful-button--color yellow"></div>
           <div className="colorful-button--color green"></div>
           <motion.a
-            href="https://drive.google.com/uc?export=download&id=1iY7JNyRN9LYdmga4OZnurTK5yfXTGeqw"
+            href={siteConfig.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="download-resume bg-primary text-white flex items-center justify-center px-6 py-3 rounded-lg font-medium"

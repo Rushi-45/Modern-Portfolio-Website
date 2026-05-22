@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useRef, useState } from "react";
 import HoverDevCards from "@/components/common/HoverFillCards";
 import { socialLinks } from "@/constants/social";
+import { siteConfig } from "@/constants/site";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +49,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/rushi.positive@gmail.com",
+        `https://formsubmit.co/${siteConfig.email}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

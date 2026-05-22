@@ -10,6 +10,8 @@ import { Toaster } from "react-hot-toast";
 import SpotlightCard from "@/components/common/SpotlightCard";
 import LoadingFallback from "@/components/common/LoadingFallback";
 import FixedBuyMeButton from "@/components/common/FixedBuyMeButton";
+import DnaScrollbar from "@/components/common/DnaScrollbar";
+import ScrollHint from "@/components/common/ScrollHint";
 
 const About = lazy(() => import("@/components/pages/About"));
 const Projects = lazy(() => import("@/components/pages/Projects"));
@@ -145,6 +147,8 @@ export default function PortfolioPage() {
       </div>
     </SpotlightCard>
     <FixedBuyMeButton />
+    <DnaScrollbar />
+    <ScrollHint />
     <Toaster />
   </MotionConfig>
   );

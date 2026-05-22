@@ -1,5 +1,6 @@
 import { FiMail, FiLinkedin, FiInstagram, FiGithub } from "react-icons/fi";
 import type { IconType } from "react-icons";
+import { siteConfig } from "@/constants/site";
 
 export interface SocialLink {
   title: string;
@@ -15,37 +16,37 @@ export const socialLinks: SocialLink[] = [
   {
     title: "Email",
     subtitle: "Get in touch",
-    href: "mailto:rushi.positive@gmail.com",
+    href: `mailto:${siteConfig.email}`,
     icon: FiMail,
     color: "red",
-    ariaLabel: "Send email to Rushi Chudasama",
+    ariaLabel: `Send email to ${siteConfig.name}`,
     footerHoverColor: "hover:text-red-400",
   },
   {
     title: "LinkedIn",
     subtitle: "Professional Profile",
-    href: "https://www.linkedin.com/in/rushi-chudasama-63473819a/",
+    href: siteConfig.social.linkedin,
     icon: FiLinkedin,
     color: "blue",
-    ariaLabel: "Visit Rushi Chudasama's LinkedIn profile",
+    ariaLabel: `Visit ${siteConfig.name}'s LinkedIn profile`,
     footerHoverColor: "hover:text-blue-400",
   },
   {
     title: "Instagram",
     subtitle: "Follow me",
-    href: "https://www.instagram.com/rushiii.js",
+    href: siteConfig.social.instagram,
     icon: FiInstagram,
     color: "pink",
-    ariaLabel: "Visit Rushi Chudasama's Instagram profile",
+    ariaLabel: `Visit ${siteConfig.name}'s Instagram profile`,
     footerHoverColor: "hover:text-pink-400",
   },
   {
     title: "GitHub",
     subtitle: "Open Source Contributions",
-    href: "https://github.com/Rushi-45/",
+    href: siteConfig.social.github,
     icon: FiGithub,
     color: "gray",
-    ariaLabel: "Visit Rushi Chudasama's GitHub profile",
+    ariaLabel: `Visit ${siteConfig.name}'s GitHub profile`,
     footerHoverColor: "hover:text-gray-300",
   },
 ];

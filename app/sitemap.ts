@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/constants/site";
 
-const SITE_URL = "https://rushichudasama.netlify.app";
+export const dynamic = "force-static";
+
+const SITE_URL = siteConfig.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
