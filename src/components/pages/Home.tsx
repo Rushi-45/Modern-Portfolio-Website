@@ -84,7 +84,8 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
         <div className="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] 3xl:w-[600px] 3xl:h-[600px]">
           <MotionImage
             src="/spinner.webp"
-            alt="Decorative rotating spinner animation"
+            alt=""
+            aria-hidden="true"
             className="h-full w-full object-contain"
             style={{
               rotate: smoothRotation,
@@ -93,7 +94,7 @@ const Home: React.FC<HomeProps> = ({ contactEnter, contactLeave }) => {
             transition={{ duration: 2, ease: "easeInOut" }}
             width={600}
             height={600}
-            priority
+            loading="lazy"
             sizes="(max-width: 575px) 320px, (max-width: 768px) 480px, (max-width: 992px) 560px, 600px"
           />
         </div>

@@ -34,6 +34,7 @@ const Footer = () => {
                 <li key={section}>
                   <Link
                     to={section}
+                    href={`#${section}`}
                     smooth={true}
                     duration={500}
                     offset={-70}

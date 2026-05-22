@@ -69,14 +69,6 @@ export default function RootLayout({
         <link rel="preconnect" href={SITE_URL} />
         <link rel="dns-prefetch" href="https://api.github.com" />
         <link rel="dns-prefetch" href="https://formsubmit.co" />
-        <link
-          rel="preload"
-          as="image"
-          href="/spinner-320w.webp"
-          fetchPriority="high"
-          imageSrcSet="/spinner-320w.webp 320w, /spinner-480w.webp 480w, /spinner-560w.webp 560w, /spinner-600w.webp 600w"
-          imageSizes="(max-width: 575px) 320px, (max-width: 768px) 480px, (max-width: 992px) 560px, 600px"
-        />
         <link rel="canonical" href={`${SITE_URL}/`} />
         <script
           type="application/ld+json"

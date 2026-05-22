@@ -156,14 +156,18 @@ const Carousel: React.FC<CarouselProps> = ({ projectEnter, projectLeave }) => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={classNames(
-                  "transition-all duration-300 rounded-full",
-                  index === activeSlide
-                    ? "w-8 h-2 sm:w-10 sm:h-2.5 bg-blue-500"
-                    : "w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white/30 hover:bg-white/50"
-                )}
+                className="w-11 h-11 flex items-center justify-center"
                 aria-label={`Go to slide ${index + 1}`}
-              />
+              >
+                <span
+                  className={classNames(
+                    "block transition-all duration-300 rounded-full",
+                    index === activeSlide
+                      ? "w-8 h-2 sm:w-10 sm:h-2.5 bg-blue-500"
+                      : "w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white/30 hover:bg-white/50"
+                  )}
+                />
+              </button>
             ))}
           </div>
         </div>

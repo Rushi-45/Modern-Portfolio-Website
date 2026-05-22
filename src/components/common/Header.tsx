@@ -127,6 +127,7 @@ const Header = () => {
                 )}
                 <Link
                   to={section}
+                  href={`#${section}`}
                   smooth={true}
                   duration={500}
                   offset={-70}
@@ -181,6 +182,7 @@ const Header = () => {
 
             <Link
               to={section}
+              href={`#${section}`}
               smooth={true}
               duration={500}
               offset={-70}
